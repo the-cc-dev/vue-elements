@@ -1,0 +1,20 @@
+{
+  "author": {
+    "name": "Websanova",
+    "url": "http://websanova.com",
+    "username": "websanova",
+    "email": "rob@websanova.com"
+  },
+  "dependencies": {},
+  "description": "Common element components for vue applications.",
+  "licenses": "MIT, GPL",
+  "devDependencies": {},
+  "keywords": ["vue", "vue.js", "modal", "msg", "message", "bag", "msgbag", "image", "upload", "form", "validation"],
+  "main": "",
+  "name": "@websanova/vue-elements",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/websanova/vue-elements"
+  },
+  "version": "0.1.0"
+}
