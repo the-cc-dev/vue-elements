@@ -56,12 +56,14 @@ module.exports = (function () {
         }
 
         for (i in msg) {
-            if (this._data.msgbags[name].msgs.length >= this._data.msgbags[name].max) {
-                this._data.msgbags[name].msgs.shift();
-            }
+            if (this._data.msgbags[name]) {
+                if (this._data.msgbags[name].msgs.length >= this._data.msgbags[name].max) {
+                    this._data.msgbags[name].msgs.shift();
+                }
 
-            // TODO: max msgs here in queue...
-            this._data.msgbags[name].msgs.push({type: type, msg: msg[i]});
+                // TODO: max msgs here in queue...
+                this._data.msgbags[name].msgs.push({type: type, msg: msg[i]});
+            }
         }
 
         this.hide();
@@ -84,16 +86,18 @@ module.exports = (function () {
 
         name = _toCamelCase(name || 'global');
 
-        if (this._data.msgbags[name].msgs.length && ! _this._data.msgbags[name].timer) {
-            this._data.msgbags[name].timer = setInterval(function () {
-                _this._data.msgbags[name].msgs.shift();
-                _this.hide(name);
-            }, this._data.msgbags[name].timeout);
-        }
+        if (this._data.msgbags[name]) {
+            if (this._data.msgbags[name].msgs.length && ! _this._data.msgbags[name].timer) {
+                this._data.msgbags[name].timer = setInterval(function () {
+                    _this._data.msgbags[name].msgs.shift();
+                    _this.hide(name);
+                }, this._data.msgbags[name].timeout);
+            }
 
-        else if ( ! this._data.msgbags[name].msgs.length) {
-            clearInterval(_this._data.msgbags[name].timer);
-            _this._data.msgbags[name].timer = null;
+            else if ( ! this._data.msgbags[name].msgs.length) {
+                clearInterval(_this._data.msgbags[name].timer);
+                _this._data.msgbags[name].timer = null;
+            }
         }
     };
 

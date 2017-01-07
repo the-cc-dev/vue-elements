@@ -1,6 +1,6 @@
 <template>
     <div style="display:none;">
-        <input v-model="filesInputWatcher" id="import-csv-file-{{ id }}" type="file" v-bind:multiple="_multiple" />
+        <input v-on:change="setFilesInputWatcher()" :id="'import-csv-file-' + id" type="file" v-bind:multiple="_multiple" />
     </div>
 </template>
 
@@ -316,6 +316,10 @@
                 else {
                     this.filePreProcess(this.request.files[0]);
                 }
+            },
+
+            setFilesInputWatcher(val) {
+                this.filesInputWatcher = val;
             }
         }
     };

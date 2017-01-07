@@ -1,9 +1,9 @@
 <template>
-    <div id="msgbag-{{ _name }}">
+    <div :id="'msgbag-' + _name">
         <component
             :is="_component"
             v-if="$msgbag._data.msgbags[_name]"
-            v-for="msg in $msgbag._data.msgbags[_name].msgs"
+            v-for="msg in ($msgbag._data.msgbags[_name] || {}).msgs"
             :type="msg.type"
             :msg="msg.msg"
         >
