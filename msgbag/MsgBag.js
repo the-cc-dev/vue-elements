@@ -26,8 +26,6 @@ module.exports = (function () {
         var i,
             ccName = _toCamelCase(name);
 
-        console.log(this._data)
-
         this._data.$set(this._data.msgbags, ccName, {
             name: name,
             msgs: [],
