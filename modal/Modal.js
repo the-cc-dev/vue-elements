@@ -24,7 +24,7 @@ module.exports = (function () {
         var i,
             ccName = _toCamelCase(name);
 
-        this._data.$set('modals.' + ccName, {
+        this._data.$set(this._data.modals, ccName, {
             visible: false,
             name: name,
             data: {}
@@ -40,8 +40,8 @@ module.exports = (function () {
     Modal.prototype.show = function (name, data) {
         name = _toCamelCase(name);
 
-        this._data.$set('modals.' + name + '.data', data || null);
-        this._data.$set('modals.' + name + '.visible', true);
+        this._data.modals[name].data = data || null;
+        this._data.modals[name].visible = true;
     };
 
     Modal.prototype.hide = function (name) {
@@ -49,11 +49,11 @@ module.exports = (function () {
 
         if (name) {
             name = _toCamelCase(name);
-            this._data.$set('modals.' + name + '.visible', false);
+            this._data.modals[name].visible = false;
         }
         else {
             for (i in this.data.modals) {
-                this._data.$set('modals.' + i + '.visible', false);
+                this._data.modals[i].visible = true;
             }
         }
     };

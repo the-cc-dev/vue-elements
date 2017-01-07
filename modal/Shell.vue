@@ -27,13 +27,12 @@
                 return this.transition || 'slide-down';
             }
         },
-        
-        ready() {
+
+        mounted() {
             var _this = this,
                 name = this.$modal.register(this.name);
 
             this.$modal.watch(this.name, function (newVal, oldVal) {
-
                 if (newVal === true && oldVal === false) {
                     if (_this.hasScrollbar()) {
                         document.body.style.paddingRight = '18px';

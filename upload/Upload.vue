@@ -46,7 +46,7 @@
             };
         },
 
-        ready () {
+        mounted () {
             this.init();
 
             this.initDropzone();
@@ -106,13 +106,13 @@
 
         methods: {
             init() {
-                this.$set('request.status', null);
-                this.$set('request.files', null);
-                this.$set('request.errors', null);
-                this.$set('request.meta', null);
-                this.$set('request.openDialog', this.triggerFileSelect);
-                this.$set('request.start', this.submit);
-                this.$set('request.reset', this.reset);
+                this.$set(this.request, 'status', null);
+                this.$set(this.request, 'files', null);
+                this.$set(this.request, 'errors', null);
+                this.$set(this.request, 'meta', null);
+                this.$set(this.request, 'openDialog', this.triggerFileSelect);
+                this.$set(this.request, 'start', this.submit);
+                this.$set(this.request, 'reset', this.reset);
             },
 
             initDropzone() {
@@ -265,7 +265,7 @@
                         error = true;
                     }
                 
-                    this.request.files.$set(i, file);
+                    this.$set(this.request.files, i, file);
 
                     // Send error.
                     if (this.request.files[i].errors.length) {
