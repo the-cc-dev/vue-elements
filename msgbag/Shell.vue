@@ -34,7 +34,7 @@
             }
         },
         
-        ready() {
+        mounted() {
             this.$msgbag.option(this._name, 'max', this.max);
             this.$msgbag.option(this._name, 'timeout', this.timeout);
         }

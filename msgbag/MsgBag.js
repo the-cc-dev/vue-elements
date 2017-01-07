@@ -26,7 +26,9 @@ module.exports = (function () {
         var i,
             ccName = _toCamelCase(name);
 
-        this._data.$set('msgbags.' + ccName, {
+        console.log(this._data)
+
+        this._data.$set(this._data.msgbags, ccName, {
             name: name,
             msgs: [],
             max: this._options.max,
@@ -61,7 +63,6 @@ module.exports = (function () {
                     this._data.msgbags[name].msgs.shift();
                 }
 
-                // TODO: max msgs here in queue...
                 this._data.msgbags[name].msgs.push({type: type, msg: msg[i]});
             }
         }
