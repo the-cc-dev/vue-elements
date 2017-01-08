@@ -20,6 +20,8 @@
                     if (_this.data.clear === true) {
                         _this.data.body = {};
                     }
+
+                    _this.data.errors = {};
                 };
         
                 this.data.error = function (res) {
