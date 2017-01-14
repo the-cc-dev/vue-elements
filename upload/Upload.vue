@@ -306,6 +306,10 @@
                     return;
                 }
 
+                if (this.request.files && !this.request.files.length) {
+                    return;
+                }
+
                 this.request.status = 'sending';
 
                 if (this._async) {
