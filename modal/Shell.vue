@@ -1,15 +1,17 @@
 <template>
-    <div v-show="show" class="w-modal-mask" v-on:click.stop="hide()" :transition="_transition">
-        <div class="w-modal-close">x</div>
+    <transition :name="_transition">
+        <div v-show="show" class="w-modal-mask" v-on:click.stop="hide()">
+            <div class="w-modal-close">x</div>
 
-        <div class="w-modal-wrapper">
-            <div class="w-modal-container">
-                <div v-on:click.stop="nothing()">
-                    <slot></slot>
+            <div class="w-modal-wrapper">
+                <div class="w-modal-container">
+                    <div v-on:click.stop="nothing()">
+                        <slot></slot>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </transition>
 </template>
 
 <script>
@@ -145,11 +147,11 @@
 
     /* transitions */
     .slide-down-enter.w-modal-mask,
-    .slide-down-leave.w-modal-mask {
+    .slide-down-leave-to.w-modal-mask {
         opacity: 0;
     }
     .slide-down-enter .w-modal-wrapper,
-    .slide-down-leave .w-modal-wrapper {
+    .slide-down-leave-to .w-modal-wrapper {
         margin-top: -500px;
     }
 
