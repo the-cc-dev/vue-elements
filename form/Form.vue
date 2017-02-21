@@ -8,9 +8,17 @@
     export default {
         props: ['data', 'submit'],
 
+        created() {
+            if ( ! this.data.status) { Vue.set(this.data, 'status', null); }
+            if ( ! this.data.body) { Vue.set(this.data, 'body', {}); }
+            if ( ! this.data.errors) { Vue.set(this.data, 'errors', {}); }
+        },
+
         methods: {
             formSubmit() {
-                var _this = this;
+                var _this = this,
+                    success = this.data.success,
+                    error = this.data.error;
                 
                 this.data.status = 'sending';
 
@@ -22,11 +30,15 @@
                     }
 
                     _this.data.errors = {};
+
+                    if (success) { success.call(_this, res); }
                 };
         
                 this.data.error = function (res) {
                     _this.data.status = 'error';
                     _this.setErrors(res.data.errors);
+
+                    if (error) { error.call(_this, res); }
                 };
 
                 this.submit(this.data);
