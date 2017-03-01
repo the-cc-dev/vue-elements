@@ -20,7 +20,8 @@
         
         data: function () {
             return {
-                show: false
+                show: false,
+                unwatch: null
             };
         },
 
@@ -30,11 +31,11 @@
             }
         },
 
-        mounted() {
+        created() {
             var _this = this,
                 name = this.$modal.register(this.name);
 
-            this.$modal.watch(this.name, function (newVal, oldVal) {
+            this.unwatch = this.$modal.watch(this.name, function (newVal, oldVal) {
                 if (newVal === true && oldVal === false) {
                     if (_this.hasScrollbar()) {
                         document.body.style.paddingRight = '18px';
@@ -58,6 +59,10 @@
                 // Make sure this runs last so that hasScrollbar func runs properly.
                 _this.show = newVal;
             });
+        },
+
+        beforeDestroy() {
+            this.unwatch();
         },
         
         methods: {

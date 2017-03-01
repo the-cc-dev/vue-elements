@@ -34,7 +34,7 @@ module.exports = (function () {
     };
 
     Modal.prototype.watch = function(name, func) {
-        this._data.$watch('modals.' + _toCamelCase(name) + '.visible', func);
+        return this._data.$watch('modals.' + _toCamelCase(name) + '.visible', func);
     };
 
     Modal.prototype.show = function (name, data) {
