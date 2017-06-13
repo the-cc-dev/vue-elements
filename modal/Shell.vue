@@ -47,8 +47,10 @@
                 }
                 else if (newVal === false && oldVal === true) {
                     setTimeout(function () {
-                        document.body.style.overflow = '';
-                        document.body.style.paddingRight = '';
+                        if ( ! _this.$modal.visible().length) {
+                            document.body.style.overflow = '';
+                            document.body.style.paddingRight = '';
+                        }
                     }, 450);
 
                     if (_this.onHide) {

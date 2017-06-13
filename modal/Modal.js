@@ -40,6 +40,8 @@ module.exports = (function () {
     Modal.prototype.show = function (name, data) {
         name = _toCamelCase(name);
 
+        this.hide();
+
         this._data.modals[name].data = data || null;
         this._data.modals[name].visible = true;
     };
@@ -54,14 +56,28 @@ module.exports = (function () {
         else {
             for (i in this._data.modals) {
                 this._data.modals[i].visible = false;
-             }
+            }
         }
     };
 
     Modal.prototype.visible = function(name) {
-        name = _toCamelCase(name);
+        var i,
+            visible = [];
 
-        return this._data.modals[name].visible;
+        if (name) {
+            name = _toCamelCase(name);
+            
+            return this._data.modals[name].visible;
+        }
+        else {
+            for (i in this._data.modals) {
+                if (this._data.modals[i].visible) {
+                    visible.push(this._data.modals[i]);
+                }
+            }
+
+            return visible;
+        }
     };
 
     Modal.prototype.data = function(name) {
