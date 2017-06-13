@@ -1,8 +1,6 @@
 <template>
     <transition :name="_transition">
         <div v-show="show" class="w-modal-mask" v-on:click.stop="hide()">
-            <div class="w-modal-close">x</div>
-
             <div class="w-modal-wrapper">
                 <div class="w-modal-container">
                     <div v-on:click.stop="nothing()">
@@ -139,17 +137,6 @@
     .w-modal-mask > .w-modal-wrapper > .w-modal-container {
         display:table-cell;
         vertical-align:middle;
-    }
-    .w-modal-mask > .w-modal-close {
-        position: fixed;
-        right: 30px;
-        top: 10px;
-        color: #fff;
-        font-weight: bold;
-        font-size: 16px;
-        font-family: verdana;
-        cursor: pointer;
-        z-index: 10001;
     }
 
     /* transitions */
