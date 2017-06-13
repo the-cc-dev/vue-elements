@@ -62,7 +62,8 @@
         },
 
         beforeDestroy() {
-            this.unwatch();
+            document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
         },
         
         methods: {
