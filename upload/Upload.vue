@@ -106,13 +106,13 @@
 
         methods: {
             init() {
-                this.$set(this.request, 'status', null);
-                this.$set(this.request, 'files', null);
-                this.$set(this.request, 'errors', null);
-                this.$set(this.request, 'meta', null);
-                this.$set(this.request, 'openDialog', this.triggerFileSelect);
-                this.$set(this.request, 'start', this.submit);
-                this.$set(this.request, 'reset', this.reset);
+                Vue.set(this.request, 'status', null);
+                Vue.set(this.request, 'files', null);
+                Vue.set(this.request, 'errors', null);
+                Vue.set(this.request, 'meta', null);
+                Vue.set(this.request, 'openDialog', this.triggerFileSelect);
+                Vue.set(this.request, 'start', this.submit);
+                Vue.set(this.request, 'reset', this.reset);
             },
 
             initDropzone() {
@@ -265,7 +265,7 @@
                         error = true;
                     }
                 
-                    this.$set(this.request.files, i, file);
+                    Vue.set(this.request.files, i, file);
 
                     // Send error.
                     if (this.request.files[i].errors.length) {

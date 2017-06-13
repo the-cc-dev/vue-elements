@@ -26,7 +26,7 @@ module.exports = (function () {
         var i,
             ccName = _toCamelCase(name);
 
-        this._data.$set(this._data.msgbags, ccName, {
+        Vue.set(this._data.msgbags, ccName, {
             name: name,
             msgs: [],
             max: this._options.max,
