@@ -52,9 +52,9 @@ module.exports = (function () {
             this._data.modals[name].visible = false;
         }
         else {
-            for (i in this.data.modals) {
-                this._data.modals[i].visible = true;
-            }
+            for (i in this._data.modals) {
+                this._data.modals[i].visible = false;
+             }
         }
     };
 
