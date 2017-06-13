@@ -24,7 +24,7 @@ module.exports = (function () {
         var i,
             ccName = _toCamelCase(name);
 
-        this._data.$set(this._data.modals, ccName, {
+        Vue.set(this._data.modals, ccName, {
             visible: false,
             name: name,
             data: {}
