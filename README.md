@@ -84,70 +84,60 @@ A fuller example might look like so:
 
 ## MsgBag
 
-The msg bag is a simple component for dealing with globalized messages. Specifically ones that might appear in the corner of the browser window for a few seconds and nicely fade out.
+The msg bag is a simple component for dealing with global messages.
 
-Again there is no design provided and it's up to the developer to provide the design for the alert. The plugin simply facilitates the display of the messages with a nice api.
+There is a simple shell provided that can be used to easily create a stylized msgbag component.
 
-The local applications alert component might look something like below. Note that this just defines the single alert box used in the plugin:
 
 ```
 <template>
-    <div v-bind:class="['alert', 'alert-' + _type]" transition="slide-up">
-        <div class="msg">{{ msg }}</div>
-    </div>
+    <w-msgbag id="-msgbag-global" :max="3" :timeout="5000">
+        <template slot="contents" scope="data">
+            <div v-for="msg in data.messages" class="alert" v-bind:class="['alert-' + getClass(msg.type)]">
+                {{ msg.msg }}
+            </div>
+        </template>
+    </w-msgbag>
 </template>
 
 <script>
     export default {
-        props: ['type', 'msg'],
-
-        computed: {
-            _type() {
-                if (this.type === 'error') { return 'danger'; }
-                if (this.type === 'success') { return 'info'; }
-
-                return this.type;
+        methods: {
+            getClass(type) {
+                switch(type) {
+                    case 'success': return 'info';
+                    case 'error': return 'danger';
+                    default: return 'default';
+                }
             }
         }
     }
 </script>
 
 <style>
-    #msgbag-global {
+    #-msgbag-global {
         position: fixed;
-        right: 20px;
-        bottom: 20px;
+        right: 10px;
+        bottom: 10px;
+        max-width: 200px;
+        word-break: break-all;
+        word-wrap: break-word;
+    }
+
+    #-msgbag-global > .alert {
+        padding: 5px 10px;
+        border-radius: 0px;
+        margin-bottom: 5px;
+        opacity: 0.75;
+    }
+
+    #-msgbag-global > .alert:last-child {
+        margin-bottom: 0px;
     }
 </style>
 ```
 
-Then add the msg box element:
-
-```
-<template>   
-    <div>
-        <w-msgbag
-            name="global"
-            component="el-alert"
-            :max="5"
-            :timeout="2000"
-        >
-        </w-msgbag>
-    </div>
-</template>
-
-<script>
-    export default {
-        ready() {
-            Vue.component('el-alert', require('./Alert.vue'));
-        },
-    }
-</script>
-```
-
-In the examples above note how the alert element receives the `type` and `msg` prop values. From there design the alerts as you like.
-
-You can also create more than ons "message bag". The default name is `global` and you can add more by setting a name.
+You can also create more than ons "message bag". The default name is `global` and more can be added by setting a name.
 
 From there you can send out alert messages from anywhere in the app.
 
