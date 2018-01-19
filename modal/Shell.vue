@@ -64,6 +64,8 @@
         beforeDestroy() {
             document.body.style.overflow = '';
             document.body.style.paddingRight = '';
+
+            this.unwatch();
         },
         
         methods: {
