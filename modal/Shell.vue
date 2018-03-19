@@ -1,6 +1,6 @@
 <template>
     <transition :name="_transition">
-        <div v-show="show" class="w-modal-mask" v-on:click.stop="hide()">
+        <div v-show="show" class="w-modal-mask" v-on:click.stop="dismiss()">
             <div class="w-modal-wrapper">
                 <div class="w-modal-container">
                     <div v-on:click.stop="nothing()">
@@ -14,7 +14,7 @@
 
 <script>
     export default {
-        props: ['name', 'onShow', 'onHide', 'transition'],
+        props: ['name', 'onShow', 'onHide', 'onDismiss', 'transition'],
         
         data: function () {
             return {
@@ -104,6 +104,10 @@
                 // var alwaysShowScroll = overflowStyle === 'scroll' || overflowYStyle === 'scroll';
 
                 // return (contentOverflows && overflowShown) || (alwaysShowScroll);
+            },
+
+            dismiss() {
+                (this.onDismiss || this.hide)();
             },
 
             hide() {

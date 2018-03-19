@@ -20,6 +20,7 @@ The design of the modal is completely up to the developers. There is no boot-str
     name="products-delete"
     :on-show="myShowFunction"
     :on-hide="myHideFunction"
+    :on-dismiss="myDismissFunction" // defaults to hide
 >
     Modal content goes here...
 </w-modal>
