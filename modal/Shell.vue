@@ -41,7 +41,9 @@
                     
                     document.body.style.overflow = 'hidden';
 
-                    if (_this.onShow) { _this.onShow.call(_this, _this.name, _this.$modal.data(_this.name)); }
+                    if (_this.onShow) {
+                        _this.onShow.call(_this, _this.$modal.data(_this.name));
+                    }
                 }
                 else if (newVal === false && oldVal === true) {
                     setTimeout(function () {
@@ -52,7 +54,7 @@
                     }, 450);
 
                     if (_this.onHide) {
-                        _this.onHide.call(_this, _this.name, _this.$modal.data(_this.name));
+                        _this.onHide.call(_this, _this.$modal.data(_this.name));
                     }
                 }
                 
@@ -107,7 +109,12 @@
             },
 
             dismiss() {
-                (this.onDismiss || this.hide)();
+                if (this.onDismiss) {
+                    this.onDismiss.call(this, this.$modal.data(this.name));
+                }
+                else {
+                    this.hide();
+                }
             },
 
             hide() {
