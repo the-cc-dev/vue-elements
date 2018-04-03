@@ -34,6 +34,8 @@
                 name = this.$modal.register(this.name);
 
             this.unwatch = this.$modal.watch(this.name, function (newVal, oldVal) {
+                var elFocus;
+
                 if (newVal === true && oldVal === false) {
                     if (_this.hasScrollbar()) {
                         document.body.style.paddingRight = '18px';
@@ -41,12 +43,20 @@
                     
                     document.body.style.overflow = 'hidden';
 
+                    elFocus = document.getElementById(_this.name + '-focus');
+
+                    if (elFocus) {
+                        setTimeout(function() {
+                            elFocus.focus();
+                        }, 250);
+                    }
+
                     if (_this.onShow) {
                         _this.onShow.call(_this, _this.$modal.data(_this.name));
                     }
                 }
                 else if (newVal === false && oldVal === true) {
-                    setTimeout(function () {
+                    setTimeout(function() {
                         if ( ! _this.$modal.visible().length) {
                             document.body.style.overflow = '';
                             document.body.style.paddingRight = '';
